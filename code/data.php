@@ -18,10 +18,7 @@ $servername = "visitacivitavecchia_db_1";
 $username = "user";
 $password = "password";
 $dbname = "db";
-$conn = $mysqli($servername,
-               $username,
-               $password,
-               $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connection_error) {
     die(
         "Connection failed: " . 
@@ -29,11 +26,11 @@ if ($conn->connection_error) {
 }
 
 $result = $conn->query(
-    "SELECT product,price FROM `products`");
+    "SELECT product,price,id FROM `products`");
 
 if ($result) {
     foreach($result as $row) {
-        // fill the obj
+
     }
 }
 
