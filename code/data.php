@@ -1,10 +1,5 @@
 <?php
 
-$result = $_SERVER["REQUEST_METHOD"];
-
-echo json_encode($result);
-return;
-
 $myObj = new stdClass();
 $myObj->productList = array();
 
@@ -19,14 +14,21 @@ if ($conn->connection_error) {
 }
 
 $result = $conn->query(
-    "SELECT product,price FROM `products`"
+    "SELECT * FROM `products` WHERE `name` = 'Forte Michelangelo'"
 );
 
 if ($result) {
     foreach ($result as $row) {
         $prod = new stdClass();
-        $prod->product = $row["product"];
-        $prod->price = $row["price"];
+        $prod->name = $row["name"];
+        $prod->name_subtitle = $row["name_subtitle"];
+        $prod->video_url = $row["video_url"];
+        $prod->img1_url = $row["img1_url"];
+        $prod->img2_url = $row["img2_url"];
+        $prod->img3_url = $row["img3_url"];
+        $prod->text1_url = $row["text1_url"];
+        $prod->text2_url = $row["text2_url"];
+        $prod->text3_url = $row["text3_url"];
         $myObj->productList[] = $prod;
     }
 }
