@@ -1,5 +1,9 @@
 <?php
 
+$query_string = $_SERVER["QUERY_STRING"];
+parse_str($query_string,$query);
+$poi = $query["poi"];
+
 $myObj = new stdClass();
 $myObj->productList = array();
 
@@ -14,7 +18,7 @@ if ($conn->connection_error) {
 }
 
 $result = $conn->query(
-    "SELECT * FROM `products` WHERE `name` = 'Forte Michelangelo'"
+    "SELECT * FROM `products` WHERE `name` = '". $poi ."'"
 );
 
 if ($result) {
@@ -33,4 +37,5 @@ if ($result) {
     }
 }
 
+header('Content-Type: application/json');
 echo json_encode($myObj);
