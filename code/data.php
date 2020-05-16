@@ -30,9 +30,11 @@ if ($result) {
         $prod->img1_url = $row["img1_url"];
         $prod->img2_url = $row["img2_url"];
         $prod->img3_url = $row["img3_url"];
+        $prod->img4_url = $row["img4_url"];
         $prod->text1_url = $row["text1_url"];
         $prod->text2_url = $row["text2_url"];
         $prod->text3_url = $row["text3_url"];
+        $prod->text4_url = $row["text4_url"];
         $myObj->productList[] = $prod;
     }
 }

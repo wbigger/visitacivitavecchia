@@ -9,6 +9,9 @@ var app = {
     },
     getProductList: function () {
         let query_string = window.location.search;
+        if (query_string === "") {
+            query_string="?poi=Visita%20Civitavecchia";
+        }
         console.log(query_string);
         // make a HTTP GET request
         $.getJSON(`${app.baseURL}${query_string}`)
@@ -26,15 +29,19 @@ var app = {
         $("#poi_img_1").attr("src", poi.img1_url);
         // call my php converter that takes in input a URL and return the text
         $.get(`${app.textURL}?link=${poi.text1_url}`).done(
-            (txt) => $("#poi_text_1").text(txt)
+            (txt) => $("#poi_text_1").html(txt)
         );
         $("#poi_img_2").attr("src", poi.img2_url);
         $.get(`${app.textURL}?link=${poi.text2_url}`).done(
-            (txt) => $("#poi_text_2").text(txt)
+            (txt) => $("#poi_text_2").html(txt)
         );
         $("#poi_img_3").attr("src", poi.img3_url);
         $.get(`${app.textURL}?link=${poi.text3_url}`).done(
-            (txt) => $("#poi_text_3").text(txt)
+            (txt) => $("#poi_text_3").html(txt)
+        );
+        $("#poi_img_4").attr("src", poi.img4_url);
+        $.get(`${app.textURL}?link=${poi.text4_url}`).done(
+            (txt) => $("#poi_text_4").html(txt)
         );
     },
     onError: function (e) {
